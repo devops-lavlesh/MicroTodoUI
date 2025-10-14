@@ -54,4 +54,4 @@ jobs:
 
       # Optional: Print image name
       - name: Show pushed image name
-        run: echo " Image pushed successfully: $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG"    
+        run: echo " Image pushed successfully:$ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG"    
