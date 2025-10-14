@@ -1,20 +1,26 @@
 name: "Build and Push UI Docker Image to ACR"
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
+  
+permissions:
+  id-token: write
+  contents: read
+  
 jobs:
   build-and-push:
     name: build-and-push
     runs-on: ubuntu-latest
-env:
-  ACR_NAME: lavtodoappacr2025                         # 👈 your actual ACR name
-  IMAGE_NAME: microtodoui                             # 👈 image name
-  IMAGE_TAG: v2                                       # 👈 image tagging
-  RESOURCE_GROUP: dev-todoapp-rglav                   # 👈 same RG where ACR is
-  LOCATION: Central India                             # 👈 your ACR region
-  ACR_LOGIN_SERVER: lavtodoappacr2025.azurecr.io
+    
+    env:
+      ACR_NAME: lavtodoappacr2025                         # 👈 your actual ACR name
+      IMAGE_NAME: microtodoui                             # 👈 image name
+      IMAGE_TAG: v2                                       # 👈 image tagging
+      RESOURCE_GROUP: dev-todoapp-rglav                   # 👈 same RG where ACR is
+      LOCATION: Central India                             # 👈 your ACR region
+      ACR_LOGIN_SERVER: lavtodoappacr2025.azurecr.io
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
