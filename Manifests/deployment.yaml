@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: microtodo-ui
-        image: lucktodoappacr2025.azurecr.io/microtodoui:v4
+        image: lucktodoappacr2025.azurecr.io/microtodoui:v5
         ports:
         - containerPort: 80
 

@@ -5,12 +5,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+    - host: ui.shineluck.shop
+      http:
       paths:
-      - path: /
-        pathType: Prefix
+      - pathType: Prefix
+        path: "/"
         backend:
           service:
             name: microtodo-ui
-            port:
+            port: 
               number: 80
