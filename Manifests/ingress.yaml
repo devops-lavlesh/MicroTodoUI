@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: microtodo-ui-ingress
 spec:
-  ingressClassName: nginx
+  ingressClassName: azure-application-gateway
   rules:
     - host: ui.shineluck.shop
       http:
