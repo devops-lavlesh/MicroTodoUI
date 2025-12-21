@@ -7,11 +7,11 @@ spec:
   rules:
     - host: ui.shineluck.shop
       http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: microtodo-ui
-            port: 
-              number: 80
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: microtodo-ui
+              port: 
+                number: 80
