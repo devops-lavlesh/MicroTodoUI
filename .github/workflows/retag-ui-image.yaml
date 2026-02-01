@@ -1,0 +1,47 @@
+name: "ACR Image Retag & Promotion"
+
+on:
+  workflow_dispatch:
+    inputs:
+      SOURCE_TAG:
+        description: "Source image tag (e.g. v5 or v5-dev)"
+        required: true
+        default: "v5"
+      TARGET_TAG:
+        description: "Target image tag (e.g. v5-dev or v5-qa)"
+        required: true
+        default: "v5-dev"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  acr-retag:
+    name: Retag UI Image in ACR
+    runs-on: ubuntu-latest
+
+    env:
+      ACR_NAME: lucktodoappacr2025
+      ACR_LOGIN_SERVER: lucktodoappacr2025.azurecr.io
+      IMAGE_NAME: microtodoui
+
+    steps:
+      - name: Azure Login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Retag image inside same ACR
+        run: |
+          echo "Promoting image:"
+          echo "FROM: $ACR_LOGIN_SERVER/$IMAGE_NAME:${{ inputs.SOURCE_TAG }}"
+          echo "TO  : $ACR_LOGIN_SERVER/$IMAGE_NAME:${{ inputs.TARGET_TAG }}"
+
+          az acr import \
+            --name $ACR_NAME \
+            --source $ACR_LOGIN_SERVER/$IMAGE_NAME:${{ inputs.SOURCE_TAG }} \
+            --image $IMAGE_NAME:${{ inputs.TARGET_TAG }} \
+            --force
