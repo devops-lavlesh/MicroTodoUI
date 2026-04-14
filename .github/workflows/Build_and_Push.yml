@@ -17,7 +17,7 @@ jobs:
     env:
       ACR_NAME: lucktodoappacr2025                         # 👈 your actual ACR name
       IMAGE_NAME: microtodoui                             # 👈 image name
-      IMAGE_TAG: v5                                      # 👈 image tagging
+      IMAGE_TAG: v4                                    # 👈 image tagging
       RESOURCE_GROUP: dev-todoapp-rglav                   # 👈 same RG where ACR is
       LOCATION: Central India                             # 👈 your ACR region
       ACR_LOGIN_SERVER: lucktodoappacr2025.azurecr.io
